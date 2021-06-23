@@ -4,11 +4,63 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+
+    <title>Nexum Challenge</title>
 
     <link rel="stylesheet" href="css/main.min.css" />
   </head>
   <body>
-    <h1>Hello world!</h1>
+    <div class="calc-wrapper">
+      <div class="calculator">
+        <div class="header">
+          <form name="calculator">
+            <input type="text" name="screen" />
+          </form>
+        </div>
+        <div class="numpad">
+          <button class="num" onclick="insert(7)">7</button>
+          <button class="num" onclick="insert(8)">8</button>
+          <button class="num" onclick="insert(9)">9</button>
+          <button class="del" onclick="remove()">DEL</button>
+          <button class="num" onclick="insert(4)">4</button>
+          <button class="num" onclick="insert(5)">5</button>
+          <button class="num" onclick="insert(6)">6</button>
+          <button onclick="insert('+')">+</button>
+          <button class="num" onclick="insert(1)">1</button>
+          <button class="num" onclick="insert(2)">2</button>
+          <button class="num" onclick="insert(3)">3</button>
+          <button onclick="insert('-')">-</button>
+          <button onclick="insert('.')">.</button>
+          <button class="num" onclick="insert(0)">0</button>
+          <button onclick="insert('/')">/</button>
+          <button onclick="insert('*')">X</button>
+          <button class="reset" onclick="reset()">RESET</button>
+          <button class="equal" onclick="equal()">=</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function insert(num) {
+        let input = document.calculator.screen;
+        if ((!input.value || input.value.slice(-1) == ".") && num == ".") {
+          return;
+        }
+        input.value += num;
+      }
+      function equal() {
+        let input = document.calculator.screen;
+        if (input.value) {
+          input.value = eval(input.value);
+        }
+      }
+      function reset() {
+        document.calculator.screen.value = "";
+      }
+      function remove() {
+        let input = document.calculator.screen;
+        input.value = input.value.substring(0, input.value.length - 1);
+      }
+    </script>
   </body>
 </html>
